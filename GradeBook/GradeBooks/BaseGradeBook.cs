@@ -14,9 +14,9 @@ namespace GradeBook.GradeBooks
         public string Name { get; set; }
         public List<Student> Students { get; set; }
 
-        public GradeBookType Type;
+        public GradeBookType Type { get; set; }
 
-        public bool IsWeighted;
+        public bool IsWeighted { get; set; }
 
         public BaseGradeBook(string name, bool isWeighted)
         {
@@ -114,15 +114,15 @@ namespace GradeBook.GradeBooks
             switch (letterGrade)
             {
                 case 'A':
-                    return 4 + (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled ? 1 : 0);
+                    return 4 + (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0);
                 case 'B':
-                    return 3 + (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled ? 1 : 0);
+                    return 3 + (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0);
                 case 'C':
-                    return 2 + (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled ? 1 : 0);
+                    return 2 + (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0);
                 case 'D':
-                    return 1 + (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled ? 1 : 0);
+                    return 1 + (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0);
                 case 'F':
-                    return 0 + (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled ? 1 : 0);
+                    return 0 + (IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0);
             }
             return 0;
         }
