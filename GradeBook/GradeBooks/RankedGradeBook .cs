@@ -15,11 +15,7 @@ namespace GradeBook.GradeBooks
 
         public override char GetLetterGrade(double averageGrade)
         {
-            if(Students.Count < 5)
-            {
-                throw new InvalidOperationException();
-            }
-            else
+            if(Students.Count >= 5)
             {
                 List<double> grades = new List<double>();
                 foreach (Student student in Students)
@@ -51,8 +47,8 @@ namespace GradeBook.GradeBooks
                         return 'F';
                     }
                 }
-                throw new InvalidOperationException();
             }
+            throw new InvalidOperationException();
         }
     }
 }
